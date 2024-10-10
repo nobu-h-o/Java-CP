@@ -1,0 +1,130 @@
+/*
+Here are some song recs | 今聞いてる曲です。
+I Really Want to Stay at Your House
+HVN ON EARTH
+MY EYES
+SDP Interlude extended
+FE!N
+ */
+
+// my library uses some code from
+// https://www.youtube.com/watch?v=d7Vqq_CBg-w
+
+import java.util.Arrays;
+import java.util.StringTokenizer;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.TreeSet;
+import java.util.TreeMap;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Stack;
+import java.util.Comparator;
+import java.util.Collections;
+import java.util.PriorityQueue;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import static java.util.Arrays.setAll;
+import static java.util.Arrays.binarySearch;
+import static java.lang.Math.min;
+import static java.lang.Math.max;
+import static java.lang.Math.abs;
+import static java.lang.Math.pow;
+import static java.lang.Math.floor;
+
+
+// i honestly don't know a single thing going on here
+class FastScanner {
+    private BufferedReader reader = null;
+    private StringTokenizer tokenizer = null;
+
+    public FastScanner(InputStream in) {
+        reader = new BufferedReader(new InputStreamReader(in));
+        tokenizer = null;
+    }
+
+    public String next() {
+        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            try {
+                tokenizer = new StringTokenizer(reader.readLine());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return tokenizer.nextToken();
+    }
+
+    public String nextLine() {
+        if (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            try {
+                return reader.readLine();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        return tokenizer.nextToken("\n");
+    }
+
+    public long nextLong() {
+        return Long.parseLong(next());
+    }
+
+    public int nextInt() {
+        return Integer.parseInt(next());
+    }
+
+    public double nextDouble() {
+        return Double.parseDouble(next());
+    }
+
+    public int[] nextIntArray(int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++)
+            a[i] = nextInt();
+        return a;
+    }
+
+    public long[] nextLongArray(int n) {
+        long[] a = new long[n];
+        for (int i = 0; i < n; i++)
+            a[i] = nextLong();
+        return a;
+    }
+}
+
+//        Graphs
+//        ArrayList<Integer> G[] = new ArrayList[N + 1];
+//        for (int i = 1; i <= N; i++) {
+//            G[i] = new ArrayList<>();
+//        }
+//        for (int i = 1; i <= M; i++) {
+//            G[A[i]].add(B[i]);
+//            G[B[i]].add(A[i]);
+//        }
+
+class lib{
+    // Arrays.sort() uses quicksort
+    // Collections.sort() uses mergesort
+    static void sort(int[] a){
+        ArrayList<Integer> b = new ArrayList<>();
+        for(int i : a) b.add(i);
+        Collections.sort(b);
+        for(int i=0;i<a.length;i++) a[i] = b.get(i);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        FastScanner sc = new FastScanner(System.in);
+        PrintWriter pw = new PrintWriter(System.out);
+
+        //solve here
+
+        pw.close();
+    }
+}
+
