@@ -115,14 +115,20 @@ class lib{
         Collections.sort(b);
         for(int i=0;i<a.length;i++) a[i] = b.get(i);
     }
+    static void swap(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
 }
+
 
 public class Main {
     public static void main(String[] args) {
         FastScanner sc = new FastScanner(System.in);
         PrintWriter pw = new PrintWriter(System.out);
 
-        //solve here
+        //code here
 
         pw.close();
     }
