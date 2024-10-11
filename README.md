@@ -1,10 +1,10 @@
-Hi this the code template I use when solving competitive programming problems
-
-0. FastScanner and PrintWriter
+<h1>Hi, this the code template I use when solving competitive programming problems</h1>
 I use FS and PW for input and output as Scanner and System.out are both pretty slow.
 
-With that being said, here are some of the macro code shortcuts that I use.
+That said, here are some of the macro code shortcuts I use.
 
-Library code snippets
-1. Faster sort algs
+<h2>Library code snippets</h2>
+
+1. Faster Sort
+
 2. Swap algs
