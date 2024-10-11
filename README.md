@@ -8,3 +8,5 @@ That said, here are some of the macro code shortcuts I use.
 1. Faster Sort
 
 2. Swap algs
+
+3. String based SubSequence search boolean
