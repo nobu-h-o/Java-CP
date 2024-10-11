@@ -120,6 +120,21 @@ class lib{
         a[i] = a[j];
         a[j] = temp;
     }
+    static void swap(long[] a, int i, int j) {
+        long temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+    static void swap(char[] a, int i, int j) {
+        char temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+    static void swap(String[] a, int i, int j) {
+        String temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
 }
 
 
