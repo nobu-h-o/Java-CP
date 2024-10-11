@@ -135,6 +135,18 @@ class lib{
         a[i] = a[j];
         a[j] = temp;
     }
+    // Returns true if s is a subsequence of t
+    static boolean isSubseq(String s, String t){
+        int sp = 0;
+        int tp = 0;
+        while (sp < s.length() && tp < t.length()) {
+            if (s.charAt(sp) == t.charAt(tp)) {
+                sp++;
+            }
+            tp++;
+        }
+        return sp == s.length();
+    }
 }
 
 
