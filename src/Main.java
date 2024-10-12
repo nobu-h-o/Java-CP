@@ -10,18 +10,7 @@ FE!N
 // my library uses some code from
 // https://www.youtube.com/watch?v=d7Vqq_CBg-w
 
-import java.util.Arrays;
-import java.util.StringTokenizer;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.TreeSet;
-import java.util.TreeMap;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Stack;
-import java.util.Comparator;
-import java.util.Collections;
-import java.util.PriorityQueue;
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,6 +20,7 @@ import static java.util.Arrays.setAll;
 import static java.util.Arrays.binarySearch;
 import static java.lang.Math.min;
 import static java.lang.Math.max;
+import static java.lang.Math.pow;
 import static java.lang.Math.abs;
 import static java.lang.Math.log;
 import static java.lang.Math.log10;
@@ -156,10 +146,7 @@ class lib{
                 sb.append(Character.toLowerCase(ch));
             }
         }
-        if(sb.toString().equals(sb.reverse().toString())){
-            return true;
-        }
-        return false;
+        return sb.toString().contentEquals(sb.reverse());
     }
     static boolean isPalindrome(int n){
         String s = Integer.toString(n);
@@ -168,31 +155,6 @@ class lib{
     static boolean isPalindrome(long n){
         String s = Long.toString(n);
         return isPalindrome(s);
-    }
-    //https://www.geeksforgeeks.org/fast-exponention-using-bit-manipulation/
-    static int pow(int a, int n) {
-        int ans = 1;
-        while (n > 0) {
-            int last_bit = (n & 1);
-            if (last_bit > 0) {
-                ans = ans * a;
-            }
-            a = a * a;
-            n = n >> 1;
-        }
-        return ans;
-    }
-    static long pow(long a, long n) {
-        long ans = 1;
-        while (n > 0) {
-            long last_bit = (n & 1);
-            if (last_bit > 0) {
-                ans = ans * a;
-            }
-            a = a * a;
-            n = n >> 1;
-        }
-        return ans;
     }
 }
 
