@@ -32,7 +32,9 @@ import static java.util.Arrays.binarySearch;
 import static java.lang.Math.min;
 import static java.lang.Math.max;
 import static java.lang.Math.abs;
-import static java.lang.Math.pow;
+import static java.lang.Math.log;
+import static java.lang.Math.log10;
+import static java.lang.Math.sqrt;
 import static java.lang.Math.floor;
 
 
@@ -166,6 +168,31 @@ class lib{
     static boolean isPalindrome(long n){
         String s = Long.toString(n);
         return isPalindrome(s);
+    }
+    //https://www.geeksforgeeks.org/fast-exponention-using-bit-manipulation/
+    static int pow(int a, int n) {
+        int ans = 1;
+        while (n > 0) {
+            int last_bit = (n & 1);
+            if (last_bit > 0) {
+                ans = ans * a;
+            }
+            a = a * a;
+            n = n >> 1;
+        }
+        return ans;
+    }
+    static long pow(long a, long n) {
+        long ans = 1;
+        while (n > 0) {
+            long last_bit = (n & 1);
+            if (last_bit > 0) {
+                ans = ans * a;
+            }
+            a = a * a;
+            n = n >> 1;
+        }
+        return ans;
     }
 }
 
