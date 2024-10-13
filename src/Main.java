@@ -10,8 +10,18 @@ FE!N
 // my library uses some code from
 // https://www.youtube.com/watch?v=d7Vqq_CBg-w
 
-import java.awt.image.AreaAveragingScaleFilter;
-import java.util.*;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.TreeSet;
+import java.util.TreeMap;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Stack;
+import java.util.Comparator;
+import java.util.Collections;
+import java.util.PriorityQueue;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -174,6 +184,6 @@ public class Main {
 
         //code here
 
+        pw.close();
     }
 }
-
