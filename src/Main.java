@@ -10,34 +10,10 @@ FE!N
 // my library uses some code from
 // https://www.youtube.com/watch?v=d7Vqq_CBg-w
 
-import java.util.Arrays;
-import java.util.StringTokenizer;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.TreeSet;
-import java.util.TreeMap;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Stack;
-import java.util.Comparator;
-import java.util.Collections;
-import java.util.PriorityQueue;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import static java.util.Arrays.setAll;
-import static java.util.Arrays.binarySearch;
-import static java.lang.Math.min;
-import static java.lang.Math.max;
-import static java.lang.Math.pow;
-import static java.lang.Math.abs;
-import static java.lang.Math.log;
-import static java.lang.Math.log10;
-import static java.lang.Math.sqrt;
-import static java.lang.Math.floor;
-import static java.lang.Math.ceil;
+import java.util.*;
+import java.io.*;
+import static java.util.Arrays.*;
+import static java.lang.Math.*;
 
 
 // i honestly don't know a single thing going on here
@@ -175,7 +151,6 @@ class lib{
         return isPalindrome(s);
     }
 }
-
 
 public class Main {
     public static void main(String[] args) {
