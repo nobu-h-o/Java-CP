@@ -10,6 +10,7 @@ FE!N
 // my library uses some code from
 // https://www.youtube.com/watch?v=d7Vqq_CBg-w
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,6 +27,7 @@ import static java.lang.Math.log;
 import static java.lang.Math.log10;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.floor;
+import static java.lang.Math.ceil;
 
 
 // i honestly don't know a single thing going on here
@@ -107,6 +109,12 @@ class lib{
         Collections.sort(b);
         for(int i=0;i<a.length;i++) a[i] = b.get(i);
     }
+    static void reverse(int[] a){
+        ArrayList<Integer> b = new ArrayList<>();
+        for(int i : a) b.add(i);
+        Collections.reverse(b);
+        for(int i=0;i<a.length;i++) a[i] = b.get(i);
+    }
     static void swap(int[] a, int i, int j) {
         int temp = a[i];
         a[i] = a[j];
@@ -166,7 +174,6 @@ public class Main {
 
         //code here
 
-        pw.close();
     }
 }
 
