@@ -150,6 +150,43 @@ class lib{
         String s = Long.toString(n);
         return isPalindrome(s);
     }
+    static int lowerBound(int[] B, int x){
+        int left = 0;
+        int right = B.length; // exclusive
+
+        while(left < right){
+            int mid = left + (right - left) / 2;
+            if(B[mid] < x){
+                left = mid +1;
+            }
+            else{
+                right = mid;
+            }
+        }
+
+        return left;
+    }
+    static long encodePosition(int x, int y) {
+        return (((long)x) << 32) | (y & 0xFFFFFFFFL);
+    }
+    static long powmod(long base, long exponent, long mod) {
+        if(mod == 1) return 0;
+        long result = 1;
+        base %= mod;
+        while(exponent > 0){
+            if((exponent & 1) == 1){
+                result = multiplyMod(result, base, mod);
+            }
+            base = multiplyMod(base, base, mod);
+            exponent >>= 1;
+        }
+        return result;
+    }
+
+    static long multiplyMod(long a, long b, long mod){
+        return (a * b) % mod;
+    }
+
 }
 
 public class Main {
