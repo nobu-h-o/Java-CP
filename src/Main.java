@@ -163,8 +163,20 @@ class lib{
                 right = mid;
             }
         }
-
         return left;
+    }
+    static int upperBound(int[] B, int x) {
+        int left = 0;
+        int right = B.length;
+        while (left < right) {
+            int mid = (left + right) >>> 1;
+            if (B[mid] <= x) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return right;
     }
     static long encodePosition(int x, int y) {
         return (((long)x) << 32) | (y & 0xFFFFFFFFL);
@@ -186,10 +198,37 @@ class lib{
     static long multiplyMod(long a, long b, long mod){
         return (a * b) % mod;
     }
+    static List<Integer> calculatePrimes(int n) {
+        if (n < 2) {
+            return new ArrayList<>();
+        }
 
+        boolean[] isPrime = new boolean[n + 1];
+        for (int i = 2; i <= n; i++) {
+            isPrime[i] = true;
+        }
+
+        for (int i = 2; i * i <= n; i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j <= n; j += i) {
+                    isPrime[j] = false;
+                }
+            }
+        }
+
+        List<Integer> primes = new ArrayList<>();
+        for (int i = 2; i <= n; i++) {
+            if (isPrime[i]) {
+                primes.add(i);
+            }
+        }
+        return primes;
+    }
 }
 
 public class Main {
+    static int[] dx = {1, -1, 0, 0};
+    static int[] dy = {0, 0, 1, -1};
     public static void main(String[] args) {
         FastScanner sc = new FastScanner(System.in);
         PrintWriter pw = new PrintWriter(System.out);
@@ -199,3 +238,4 @@ public class Main {
         pw.close();
     }
 }
+
