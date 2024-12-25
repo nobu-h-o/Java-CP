@@ -6,19 +6,7 @@ import static java.lang.Math.*;
 public class Main {
     private static void solve() {
         // code here
-        char[] c = sc.next().toCharArray();
-        if(c[0] == c[1] && c[1] == c[2] && c[2] == c[3]) {
-            pr.println("Weak");
-            return;
-        } else {
-            for(int i=0; i<3; i++) {
-                if((c[i] + 1) % 10 != c[i+1]) {
-                    pr.println("Strong");
-                    return;
-                }
-            }
-        }
-        pr.println("Weak");
+
     }
     public static void main(String[] args) {
         solve();
