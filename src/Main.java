@@ -4,16 +4,16 @@ import static java.util.Arrays.*;
 import static java.lang.Math.*;
 
 public class Main {
-    static int[] dx = {1, -1, 0, 0};
-    static int[] dy = {0, 0, 1, -1};
+    private static void solve() {
+     // code here
+    }
     public static void main(String[] args) {
-        FastScanner sc = new FastScanner(System.in);
-        PrintWriter pw = new PrintWriter(System.out);
-
-        // code here
-        
+        solve();
+        pw.flush();
         pw.close();
     }
+    private static FastScanner sc = new FastScanner(System.in);
+    private static PrintWriter pw = new PrintWriter(System.out);
 }
 
 
