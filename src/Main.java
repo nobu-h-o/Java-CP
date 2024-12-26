@@ -18,7 +18,7 @@ public class Main {
 
 
 /**
- * refercence : https://github.com/NASU41/AtCoderLibraryForJava/blob/master/ContestIO/ContestScanner.java
+ * reference : https://github.com/NASU41/AtCoderLibraryForJava/blob/master/ContestIO/ContestScanner.java
  */
 class ContestScanner {
     private final java.io.InputStream in;
