@@ -6,7 +6,6 @@ import static java.lang.Math.*;
 public class Main {
     private static void solve() {
         // code here
-
     }
     public static void main(String[] args) {
         solve();
