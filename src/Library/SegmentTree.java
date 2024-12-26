@@ -1,96 +1,187 @@
 package Library;
 
-// https://www.geeksforgeeks.org/segment-tree-in-java/
-class SegmentTreeNode {
-    // Range of indices covered by this node
-    int start, end;
+class SegmentTree<S> {
+    final int MAX;
 
-    // Sum of values in the range
-    int sum;
+    final int N;
+    final java.util.function.BinaryOperator<S> op;
+    final S E;
 
-    // Pointers to left and right child nodes
-    SegmentTreeNode left, right;
+    final S[] data;
 
-    public SegmentTreeNode(int start, int end) {
-        this.start = start;
-        this.end = end;
-        this.sum = 0;
-        this.left = null;
-        this.right = null;
-    }
-}
-
-// Segment Tree Class
-class SegmentTree {
-    // Root of the segment tree
-    private SegmentTreeNode root;
-
-    public SegmentTree(int[] nums) {
-        root = buildTree(nums, 0, nums.length - 1);
+    @SuppressWarnings("unchecked")
+    public SegmentTree(int n, java.util.function.BinaryOperator<S> op, S e) {
+        this.MAX = n;
+        int k = 1;
+        while (k < n) k <<= 1;
+        this.N = k;
+        this.E = e;
+        this.op = op;
+        this.data = (S[]) new Object[N << 1];
+        java.util.Arrays.fill(data, E);
     }
 
-    // Build the segment tree recursively
-    private SegmentTreeNode buildTree(int[] nums, int start, int end) {
-        if (start > end) {
-            return null; // Empty node
+    public SegmentTree(S[] dat, java.util.function.BinaryOperator<S> op, S e) {
+        this(dat.length, op, e);
+        build(dat);
+    }
+
+    private void build(S[] dat) {
+        int l = dat.length;
+        System.arraycopy(dat, 0, data, N, l);
+        for (int i = N - 1; i > 0; i--) {
+            data[i] = op.apply(data[i << 1 | 0], data[i << 1 | 1]);
         }
-        SegmentTreeNode node = new SegmentTreeNode(start, end);
-        if (start == end) {
-            // Leaf node: store the value directly
-            node.sum = nums[start];
-        } else {
-            int mid = start + (end - start) / 2;
+    }
 
-            // Build left subtree
-            node.left = buildTree(nums, start, mid);
-
-            // Build right subtree
-            node.right = buildTree(nums, mid + 1, end);
-
-            // Combine values from children
-            node.sum = node.left.sum + node.right.sum;
+    public void set(int p, S x) {
+        exclusiveRangeCheck(p);
+        data[p += N] = x;
+        p >>= 1;
+        while (p > 0) {
+            data[p] = op.apply(data[p << 1 | 0], data[p << 1 | 1]);
+            p >>= 1;
         }
-        return node;
     }
 
-    // Query the range sum [i, j]
-    public int rangeSum(int i, int j) {
-        return rangeSum(root, i, j);
+    public S get(int p) {
+        exclusiveRangeCheck(p);
+        return data[p + N];
     }
 
-    private int rangeSum(SegmentTreeNode node, int start, int end) {
-        if (node == null || start > node.end || end < node.start) {
-            // Out of range or null node
-            return 0;
+    public S prod(int l, int r) {
+        if (l > r) {
+            throw new IllegalArgumentException(
+                    String.format("Invalid range: [%d, %d)", l, r)
+            );
         }
-        if (start <= node.start && end >= node.end) {
-            // Fully covered by this node
-            return node.sum;
+        inclusiveRangeCheck(l);
+        inclusiveRangeCheck(r);
+        S sumLeft = E;
+        S sumRight = E;
+        l += N; r += N;
+        while (l < r) {
+            if ((l & 1) == 1) sumLeft = op.apply(sumLeft, data[l++]);
+            if ((r & 1) == 1) sumRight = op.apply(data[--r], sumRight);
+            l >>= 1; r >>= 1;
         }
-        return rangeSum(node.left, start, end) + rangeSum(node.right, start, end);
+        return op.apply(sumLeft, sumRight);
     }
 
-    // Update the value at index i
-    public void update(int i, int val) {
-        update(root, i, val);
+    public S allProd() {
+        return data[1];
     }
 
-    private void update(SegmentTreeNode node, int index, int val) {
-        if (node.start == node.end) {
-            // Leaf node: update the value
-            node.sum = val;
-        } else {
-            int mid = node.start + (node.end - node.start) / 2;
-            if (index <= mid) {
-                // Update left subtree
-                update(node.left, index, val);
-            } else {
-                // Update right subtree
-                update(node.right, index, val);
+    public int maxRight(int l, java.util.function.Predicate<S> f) {
+        inclusiveRangeCheck(l);
+        if (!f.test(E)) {
+            throw new IllegalArgumentException("Identity element must satisfy the condition.");
+        }
+        if (l == MAX) return MAX;
+        l += N;
+        S sum = E;
+        do {
+            l >>= Integer.numberOfTrailingZeros(l);
+            if (!f.test(op.apply(sum, data[l]))) {
+                while (l < N) {
+                    l = l << 1;
+                    if (f.test(op.apply(sum, data[l]))) {
+                        sum = op.apply(sum, data[l]);
+                        l++;
+                    }
+                }
+                return l - N;
             }
+            sum = op.apply(sum, data[l]);
+            l++;
+        } while ((l & -l) != l);
+        return MAX;
+    }
 
-            // Recalculate sum
-            node.sum = node.left.sum + node.right.sum;
+    public int minLeft(int r, java.util.function.Predicate<S> f) {
+        inclusiveRangeCheck(r);
+        if (!f.test(E)) {
+            throw new IllegalArgumentException("Identity element must satisfy the condition.");
         }
+        if (r == 0) return 0;
+        r += N;
+        S sum = E;
+        do {
+            r--;
+            while (r > 1 && (r & 1) == 1) r >>= 1;
+            if (!f.test(op.apply(data[r], sum))) {
+                while (r < N) {
+                    r = r << 1 | 1;
+                    if (f.test(op.apply(data[r], sum))) {
+                        sum = op.apply(data[r], sum);
+                        r--;
+                    }
+                }
+                return r + 1 - N;
+            }
+            sum = op.apply(data[r], sum);
+        } while ((r & -r) != r);
+        return 0;
+    }
+
+    private void exclusiveRangeCheck(int p) {
+        if (p < 0 || p >= MAX) {
+            throw new IndexOutOfBoundsException(
+                    String.format("Index %d out of bounds for the range [%d, %d).", p, 0, MAX)
+            );
+        }
+    }
+
+    private void inclusiveRangeCheck(int p) {
+        if (p < 0 || p > MAX) {
+            throw new IndexOutOfBoundsException(
+                    String.format("Index %d out of bounds for the range [%d, %d].", p, 0, MAX)
+            );
+        }
+    }
+
+    // **************** DEBUG **************** //
+
+    private int indent = 6;
+
+    public void setIndent(int newIndent) {
+        this.indent = newIndent;
+    }
+
+    @Override
+    public String toString() {
+        return toSimpleString();
+    }
+
+    public String toDetailedString() {
+        return toDetailedString(1, 0);
+    }
+
+    private String toDetailedString(int k, int sp) {
+        if (k >= N) return indent(sp) + data[k];
+        String s = "";
+        s += toDetailedString(k << 1 | 1, sp + indent);
+        s += "\n";
+        s += indent(sp) + data[k];
+        s += "\n";
+        s += toDetailedString(k << 1 | 0, sp + indent);
+        return s;
+    }
+
+    private static String indent(int n) {
+        StringBuilder sb = new StringBuilder();
+        while (n --> 0) sb.append(' ');
+        return sb.toString();
+    }
+
+    public String toSimpleString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append('[');
+        for (int i = 0; i < N; i++) {
+            sb.append(data[i + N]);
+            if (i < N - 1) sb.append(',').append(' ');
+        }
+        sb.append(']');
+        return sb.toString();
     }
 }

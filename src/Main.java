@@ -1,7 +1,5 @@
 import java.util.*;
 import java.io.*;
-import static java.util.Arrays.*;
-import static java.lang.Math.*;
 
 public class Main {
     private static void solve() {
@@ -15,6 +13,8 @@ public class Main {
     private static ContestScanner sc = new ContestScanner(System.in);
     private static ContestPrinter pr = new ContestPrinter(System.out);
 }
+
+
 
 
 /**
