@@ -7,11 +7,11 @@ public class Main {
     }
     public static void main(String[] args) {
         solve();
-        pr.flush();
-        pr.close();
+        pw.flush();
+        pw.close();
     }
     private static ContestScanner sc = new ContestScanner(System.in);
-    private static ContestPrinter pr = new ContestPrinter(System.out);
+    private static ContestPrinter pw = new ContestPrinter(System.out);
 }
 
 

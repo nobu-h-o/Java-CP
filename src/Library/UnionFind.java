@@ -1,78 +1,73 @@
 package Library;
-// https://qiita.com/aja_min/items/ef6603f1cbabca0739ea
+
 class UnionFind {
-    int[] parent;
-    int[] rank;
+	private int n;
+	private int[] parentOrSize;
 
-    public UnionFind(int n) {
-        // 初期化コンストラクタ
-        this.parent = new int[n];
-        this.rank = new int[n];
+	public UnionFind(int n) {
+		this.n = n;
+		this.parentOrSize = new int[n];
+		java.util.Arrays.fill(parentOrSize, -1);
+	}
 
-        // 最初はすべてが根
-        for (int i = 0; i < n; i++) {
-            parent[i] = i;
-            rank[i] = 0;
-        }
-    }
+	int merge(int a, int b) {
+		if (!(0 <= a && a < n))
+			throw new IndexOutOfBoundsException("a=" + a);
+		if (!(0 <= b && b < n))
+			throw new IndexOutOfBoundsException("b=" + b);
 
-    /**
-     * 要素の根を返す。
-     * 経路圧縮付き。（1→3→2となっていて2をfindした際、1→3,2と木の深さを浅くする。）
-     *
-     * @param x
-     * @return 要素xの根
-     */
-    public int find(int x) {
-        if (x == parent[x]) {
-            return x;
-        } else {
-            // 経路圧縮時はrank変更しない
-            parent[x] = find(parent[x]);
-            return parent[x];
-        }
-    }
+		int x = leader(a);
+		int y = leader(b);
+		if (x == y) return x;
+		if (-parentOrSize[x] < -parentOrSize[y]) {
+			int tmp = x;
+			x = y;
+			y = tmp;
+		}
+		parentOrSize[x] += parentOrSize[y];
+		parentOrSize[y] = x;
+		return x;
+	}
 
-    /**
-     * ２つの要素が同じ集合に属するかどうかを返す。
-     *
-     * @param x
-     * @param y
-     * @return 同じ集合であればtrue
-     */
-    public boolean same(int x, int y) {
-        return find(x) == find(y);
-    }
+	boolean same(int a, int b) {
+		if (!(0 <= a && a < n))
+			throw new IndexOutOfBoundsException("a=" + a);
+		if (!(0 <= b && b < n))
+			throw new IndexOutOfBoundsException("b=" + b);
+		return leader(a) == leader(b);
+	}
 
-    /**
-     * 要素xが属する集合と要素yが属する集合を連結する。
-     * 木の高さ（ランク）を気にして、低い方に高い方をつなげる。（高い方の根を全体の根とする。）
-     *
-     * @param x
-     * @param y
-     */
-    public void unite(int x, int y) {
-        int xRoot = find(x);
-        int yRoot = find(y);
+	int leader(int a) {
+		if (parentOrSize[a] < 0) {
+			return a;
+		} else {
+			parentOrSize[a] = leader(parentOrSize[a]);
+			return parentOrSize[a];
+		}
+	}
 
-        if (xRoot == yRoot) {
-            // 属する集合が同じな場合、何もしない
-            return;
-        }
+	int size(int a) {
+		if (!(0 <= a && a < n))
+			throw new IndexOutOfBoundsException("" + a);
+		return -parentOrSize[leader(a)];
+	}
 
-        // rankを比較して共通の根を決定する。
-        // ※find時の経路圧縮はrank考慮しない
-        if (rank[xRoot] > rank[yRoot]) {
-            // xRootのrankのほうが大きければ、共通の根をxRootにする
-            parent[yRoot] = xRoot;
-        } else if (rank[xRoot] < rank[yRoot]) {
-            // yRootのrankのほうが大きければ、共通の根をyRootにする
-            parent[xRoot] = yRoot;
-        } else {
-            // rankが同じであれば、どちらかを根として、rankを一つ上げる。
-            parent[xRoot] = yRoot;
-            rank[xRoot]++;
-        }
-    }
+	java.util.ArrayList<java.util.ArrayList<Integer>> groups() {
+		int[] leaderBuf = new int[n];
+		int[] groupSize = new int[n];
+		for (int i = 0; i < n; i++) {
+			leaderBuf[i] = leader(i);
+			groupSize[leaderBuf[i]]++;
+		}
+		java.util.ArrayList<java.util.ArrayList<Integer>> result = new java.util.ArrayList<>(n);
+		for (int i = 0; i < n; i++) {
+			result.add(new java.util.ArrayList<>(groupSize[i]));
+		}
+		for (int i = 0; i < n; i++) {
+			result.get(leaderBuf[i]).add(i);
+		}
+		result.removeIf(java.util.ArrayList::isEmpty);
+		return result;
+	}
 }
 
