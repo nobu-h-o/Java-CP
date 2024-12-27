@@ -1,5 +1,7 @@
 import java.util.*;
 import java.io.*;
+import static java.util.Arrays.*;
+import static java.lang.Math.*;
 
 public class Main {
     private static void solve() {
