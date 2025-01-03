@@ -1,4 +1,5 @@
 package Library;
+import java.util.*;
 
 class MathLib{
     private static long safe_mod(long x, long m){
