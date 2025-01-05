@@ -1,5 +1,4 @@
 package Library;
-import java.util.*;
 
 class MathLib{
     private static long safe_mod(long x, long m){
@@ -112,8 +111,8 @@ class MathLib{
     }
 
     public static java.util.ArrayList<Long> divisors(long n){
-        java.util.ArrayList<Long> divisors = new ArrayList<>();
-        java.util.ArrayList<Long> large = new ArrayList<>();
+        java.util.ArrayList<Long> divisors = new java.util.ArrayList<>();
+        java.util.ArrayList<Long> large = new java.util.ArrayList<>();
 
         for(long i=1; i*i<=n; i++) if(n%i==0){
             divisors.add(i);
