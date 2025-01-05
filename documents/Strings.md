@@ -31,7 +31,7 @@ String s = "Hello World!";
 StringBuilder sb = new StringBuilder(s);
 // This initilizes an object, sb, of the StringBuilder Class with
 // the String "Hello World!"
-sb.setCharAt(6, 'h');
+sb.setCharAt(6, 'w');
 // This sets the 6th index of the sb into 'h'.
 // therefore, the content of sb would be "Hello world!"
 sb.append("!!");
