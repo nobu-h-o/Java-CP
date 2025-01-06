@@ -154,7 +154,8 @@ private static void solve() {
 <details>
 <summary>Solution</summary>
 The idea here is to delete 2 characters at the front of the sb when there are 2 consecutive '0's and to delete 1 character at the front when there aren't, 
-while counting how many times we delete the characters. We have to be careful around deleting characters in an sb as the indexes would move to account for
+while counting how many times we delete the characters. We have to be careful around deleting characters in the front of an sb (and ArrayLists and similarlly ordered data structures) 
+as the indexes would move to account for
 the loss. This problem was also featured on ABC 283 as problem C. So if you were able to solve this, congrats! You just solved a C problem! 
 
 [ABC283](https://atcoder.jp/contests/abc283/)    
