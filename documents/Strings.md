@@ -53,6 +53,7 @@ StringBuilders back to Strings.
 s = sb.toString();
 // Now the String that once was "Hello World" is now "hell".
 ```
+### Extra
 It's important to note that Strings in Java are reference data types because they are objects of the String class. 
 Strings are immutable, meaning that once a String object, such as "Hello World", is created, its value cannot be changed. 
 When you perform operations that modify a string - like concatenation or replacement - a new String instance with the updated 
