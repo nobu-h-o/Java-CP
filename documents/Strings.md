@@ -76,6 +76,33 @@ public class Main {
 ```
 </details>
 
+[ABC357-B](https://atcoder.jp/contests/abc357/tasks/abc357_b)
+<details>
+<summary>Solution</summary>
+We increment a counter when there is a uppercase character and decrement otherwise. Use the toLowerCase or toUpperCase method for conversion.
+    
+```Java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        sc.close();
+
+        int countCapital = 0;
+        for(int i=0;i<s.length();i++) {
+            if(s.charAt(i)>='A' && s.charAt(i)<='Z') countCapital++;
+            else countCapital--;
+        }
+        if(countCapital>0) System.out.println(s.toUpperCase());
+        else System.out.println(s.toLowerCase());
+    }
+}
+
+```
+</details>
+
 [ABC372-A](https://atcoder.jp/contests/abc372/tasks/abc372_a)  
 <details>
 <summary>Solution</summary>
