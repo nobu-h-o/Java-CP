@@ -45,7 +45,12 @@ sb.delete(6, 13);
 // delete a specific character with 
 sb.deleteCharAt(4);
 // this would make sb "Hell"
-
-
+```
+StringBuiders can also use most of the methods that the Strings can use.
+Therefore, it can still use sb.length() or sb.charAt(i). You can also convert
+StringBuilders back to Strings.
+```Java
+s = sb.toString();
+// Now the String that once was "Hello World" is now "hell".
 ```
 
