@@ -54,14 +54,118 @@ s = sb.toString();
 // Now the String that once was "Hello World" is now "hell".
 ```
 ### Example Problems
-
-[ABC384-A](https://atcoder.jp/contests/abc384/tasks/abc384_a) 
+[ABC344-A](https://atcoder.jp/contests/abc344/tasks/abc344_a)  
 <details>
-  <summary>Solution</summary>
+<summary>Solution</summary>
+
+```Java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        sc.close();
+
+        int index1 = s.indexOf('|');
+        int index2 = s.lastIndexOf('|');
+        System.out.println(s.substring(0, index1) + s.substring(index2 + 1));
+    }
+}
+```
+We find the first index of '|' and the second index of '|' and print the substrings that are not between these 2 indexes.
 </details>
 
 [ABC372-A](https://atcoder.jp/contests/abc372/tasks/abc372_a)  
-[ABC344-A](https://atcoder.jp/contests/abc344/tasks/abc344_a)  
+<details>
+<summary>Solution</summary>
+
+```Java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        sc.close();
+
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<s.length(); i++){
+            if(s.charAt(i)!='.') sb.append(s.charAt(i));
+        }
+
+        System.out.println(sb);
+    }
+}
+```
+We append each letter from s to sb that doesn't equal '.'.
+</details>
+
+[ABC384-A](https://atcoder.jp/contests/abc384/tasks/abc384_a) 
+<details>
+<summary>Solution</summary>
+
+```Java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        char c1 = sc.next().charAt(0);
+        char c2 = sc.next().charAt(0);
+        String s = sc.next();
+        sc.close();
+
+        StringBuilder sb = new StringBuilder(s);
+        for(int i=0;i<n;i++){
+            if(s.charAt(i)!=c1) sb.setCharAt(i,c2);
+        }
+        
+        System.out.println(sb);
+    }
+}
+```
+The Scanner class doesn't accept char inputs so we have to use the input for Strings; sc.next() and use the first index of what we inputted from there.
+Of course, you can input the StringBuilder like this to be a little bit faster.
+```Java
+StringBuilder sb = new StringBuilder(sc.next());
+```
+</details>
+
+[ABC386-B](https://atcoder.jp/contests/abc386/tasks/abc386_b) 
+<details>
+<summary>Solution</summary>
+
+```Java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        sc.close();
+        
+        StringBuilder sb = new StringBuilder(s);
+        int count=0;
+        
+        while(sb.length()>0){
+            if(sb.length()>1 && sb.charAt(0)=='0' && sb.charAt(1)=='0'){
+                sb.delete(0, 2);
+                count++;
+            }else{
+                sb.deleteCharAt(0);
+                count++;
+            }
+        }
+        
+        System.out.println(count);
+    }
+}
+```
+The idea here is to delete 2 characters at the front of the sb when there are 2 consecutive '0's and to delete 1 character at the front when there aren't, while counting how many times we delete characters.
+</details>
+
 ### Extra
 It's important to note that Strings in Java are reference data types because they are objects of the String class. 
 Strings are immutable, meaning that once a String object, such as "Hello World", is created, its value cannot be changed. 
