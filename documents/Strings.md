@@ -45,24 +45,19 @@ s = sb.toString();
 The String that was initialized with "Hello World" is now "Hell".
 
 ### Example Problems
+The solutions provided here will assume that you are using the template provided in this repository.  
+
 [ABC344-A](https://atcoder.jp/contests/abc344/tasks/abc344_a)  
 <details>
 <summary>Solution</summary>
 We find the first index of '|' and the second index of '|' and print the substrings that are not between these 2 indexes.
     
 ```Java
-import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String s = sc.next();
-        sc.close();
-
-        int index1 = s.indexOf('|');
-        int index2 = s.lastIndexOf('|');
-        System.out.println(s.substring(0, index1) + s.substring(index2 + 1));
-    }
+private static void solve() {
+    String s = sc.next();
+    int index1 = s.indexOf('|');
+    int index2 = s.lastIndexOf('|');
+    pw.println(s.substring(0, index1) + s.substring(index2 + 1));
 }
 ```
 </details>
@@ -73,22 +68,15 @@ public class Main {
 We increment a counter when there is an uppercase character and decrement otherwise. Use the toLowerCase or toUpperCase method for conversion.
     
 ```Java
-import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String s = sc.next();
-        sc.close();
-
-        int countCapital = 0;
-        for(int i=0;i<s.length();i++) {
-            if(s.charAt(i)>='A' && s.charAt(i)<='Z') countCapital++;
-            else countCapital--;
-        }
-        if(countCapital>0) System.out.println(s.toUpperCase());
-        else System.out.println(s.toLowerCase());
+private static void solve() {
+    String s = sc.next();
+    int countUpper = 0;
+    for(int i=0;i<s.length();i++) {
+        if(s.charAt(i)>='A' && s.charAt(i)<='Z') countUpper++;
+        else countUpper--;
     }
+    if(countUpper>0) pw.println(s.toUpperCase());
+    else pw.println(s.toLowerCase());
 }
 
 ```
@@ -101,65 +89,44 @@ We can write exactly what is being told by deleting every instance of '.' that t
 so we have to convert sb to s and check it every loop.
 
 ```Java
-import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String s = sc.next();
-        sc.close();
-
-        StringBuilder sb = new StringBuilder(s);
-
-        while(s.contains(".")){
-            int index = sb.indexOf(".");
-            sb.deleteCharAt(index);
-            s = sb.toString();
-        }
-
-        System.out.println(s);
+private static void solve() {
+    String s = sc.next();
+    StringBuilder sb = new StringBuilder(s);
+    while(s.contains(".")){
+        int index = sb.indexOf(".");
+        sb.deleteCharAt(index);
+        s = sb.toString();
     }
+    pw.println(s);
 }
 
+```
+Of course, you can input the StringBuilder like this to be a little bit faster. Obviously this wouldn't be a good idea if storing the original String was a necessity.
+```Java
+StringBuilder sb = new StringBuilder(sc.next());
 ```
 Another way is to append each character from the string that isn't '.' to the stringbuilder.
 
 ```Java
-import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String s = sc.next();
-        sc.close();
-
-        StringBuilder sb = new StringBuilder();
-        for(int i=0; i<s.length(); i++){
-            if(s.charAt(i)!='.') sb.append(s.charAt(i));
-        }
-
-        System.out.println(sb);
+private static void solve() {
+    String s = sc.next();
+    StringBuilder sb = new StringBuilder();
+    for(int i=0; i<s.length(); i++){
+        if(s.charAt(i)!='.') sb.append(s.charAt(i));
     }
+    pw.println(sb);
 }
 ```
 We can also skip using StringBuilders entirely.
 
 ```Java
-import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String s = sc.next();
-        sc.close();
-
-        for(int i=0;i<s.length();i++) {
-            if(s.charAt(i)!='.') System.out.print(s.charAt(i));
-        }
-        System.out.println();
+private static void solve() {
+    String s = sc.next();
+    for(int i=0;i<s.length();i++) {
+        if(s.charAt(i)!='.') pw.print(s.charAt(i));
     }
+    pw.println();
 }
-
 ```
 </details>
 
@@ -169,30 +136,17 @@ public class Main {
 The Scanner class doesn't accept char inputs so we have to use the input as a string and use its first index.
 
 ```Java
-import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        char c1 = sc.next().charAt(0);
-        char c2 = sc.next().charAt(0);
-        String s = sc.next();
-        sc.close();
-
-        StringBuilder sb = new StringBuilder(s);
-        for(int i=0;i<n;i++){
-            if(s.charAt(i)!=c1) sb.setCharAt(i,c2);
-        }
-        
-        System.out.println(sb);
+private static void solve() {
+    int n = sc.nextInt();
+    char c1 = sc.next().charAt(0);
+    char c2 = sc.next().charAt(0);
+    String s = sc.next();
+    StringBuilder sb = new StringBuilder(s);
+    for(int i=0;i<n;i++){
+        if(s.charAt(i)!=c1) sb.setCharAt(i,c2);
     }
+    pw.println(sb);
 }
-```
-
-Of course, you can input the StringBuilder like this to be a little bit faster.
-```Java
-StringBuilder sb = new StringBuilder(sc.next());
 ```
 </details>
 
@@ -201,32 +155,22 @@ StringBuilder sb = new StringBuilder(sc.next());
 <summary>Solution</summary>
 The idea here is to delete 2 characters at the front of the sb when there are 2 consecutive '0's and to delete 1 character at the front when there aren't, 
 while counting how many times we delete the characters. We have to be careful around deleting characters in an sb as the indexes would move to account for
-the loss. This problem was also featured on ABC283 as problem C. So if you were able to solve this, congrats! You just solved a C problem!
+the loss. This problem was also featured on ABC 283 as problem C. So if you were able to solve this, congrats! You just solved a C problem! 
 
-    
+[ABC283](https://atcoder.jp/contests/abc283/)    
 ```Java
-import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String s = sc.next();
-        sc.close();
-        
-        StringBuilder sb = new StringBuilder(s);
-        int count=0;
-        
-        while(sb.length()>0){
-            if(sb.length()>1 && sb.charAt(0)=='0' && sb.charAt(1)=='0'){
-                sb.delete(0, 2);
-            }else{
-                sb.deleteCharAt(0);
-            }
-            count++;
+private static void solve() {
+    StringBuilder sb = new StringBuilder(sc.next());
+    int count=0;
+    while(!sb.isEmpty()){
+        if(sb.length()>1 && sb.charAt(0)=='0' && sb.charAt(1)=='0'){
+            sb.delete(0, 2);
+        }else{
+            sb.deleteCharAt(0);
         }
-        
-        System.out.println(count);
+        count++;
     }
+    pw.println(count);
 }
 ```
 </details>
