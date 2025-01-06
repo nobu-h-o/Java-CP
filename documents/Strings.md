@@ -124,6 +124,25 @@ public class Main {
 }
 ```
 Another way is to append each letter from s to sb that doesn't equal '.'.
+
+```Java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        sc.close();
+
+        for(int i=0;i<s.length();i++) {
+            if(s.charAt(i)!='.') System.out.print(s.charAt(i));
+        }
+        System.out.println();
+    }
+}
+
+```
+We can also skip using StringBuilders entirely.
 </details>
 
 [ABC384-A](https://atcoder.jp/contests/abc384/tasks/abc384_a) 
