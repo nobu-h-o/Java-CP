@@ -57,7 +57,8 @@ s = sb.toString();
 [ABC344-A](https://atcoder.jp/contests/abc344/tasks/abc344_a)  
 <details>
 <summary>Solution</summary>
-
+We find the first index of '|' and the second index of '|' and print the substrings that are not between these 2 indexes.
+    
 ```Java
 import java.util.Scanner;
 
@@ -73,12 +74,13 @@ public class Main {
     }
 }
 ```
-We find the first index of '|' and the second index of '|' and print the substrings that are not between these 2 indexes.
 </details>
 
 [ABC372-A](https://atcoder.jp/contests/abc372/tasks/abc372_a)  
 <details>
 <summary>Solution</summary>
+We can write exactly what is being told by deleting every instance of '.' that the string contains. Unfortunately, StringBuilder doesn't have the contains method, 
+so we have to convert sb to s and check it every loop.
 
 ```Java
 import java.util.Scanner;
@@ -102,8 +104,7 @@ public class Main {
 }
 
 ```
-We can write exactly what is being told by deleting every instance of '.' that s contains. Unfortunately, sb doesn't have the contains method, so we have
-to convert sb to s and check it every loop.
+Another way is to append each character from the string that isn't '.' to the stringbuilder.
 
 ```Java
 import java.util.Scanner;
@@ -123,7 +124,7 @@ public class Main {
     }
 }
 ```
-Another way is to append each letter from s to sb that doesn't equal '.'.
+We can also skip using StringBuilders entirely.
 
 ```Java
 import java.util.Scanner;
@@ -142,12 +143,12 @@ public class Main {
 }
 
 ```
-We can also skip using StringBuilders entirely.
 </details>
 
 [ABC384-A](https://atcoder.jp/contests/abc384/tasks/abc384_a) 
 <details>
 <summary>Solution</summary>
+The Scanner class doesn't accept char inputs so we have to use the input as a string and use its first index.
 
 ```Java
 import java.util.Scanner;
@@ -170,7 +171,7 @@ public class Main {
     }
 }
 ```
-The Scanner class doesn't accept char inputs so we have to use the input for Strings; sc.next() and use the first index of what we inputted from there.
+
 Of course, you can input the StringBuilder like this to be a little bit faster.
 ```Java
 StringBuilder sb = new StringBuilder(sc.next());
@@ -180,7 +181,10 @@ StringBuilder sb = new StringBuilder(sc.next());
 [ABC386-B](https://atcoder.jp/contests/abc386/tasks/abc386_b) 
 <details>
 <summary>Solution</summary>
-
+The idea here is to delete 2 characters at the front of the sb when there are 2 consecutive '0's and to delete 1 character at the front when there aren't, 
+while counting how many times we delete the characters. We have to be careful around deleting characters in a sb as the indexes would move to account for
+the loss. This problem was also featured on [ABC283](https://atcoder.jp/contests/abc283/tasks/abc283_c) as problem C. So, if you were able to solve this, congrats! You just solved a C problem!
+    
 ```Java
 import java.util.Scanner;
 
@@ -206,9 +210,6 @@ public class Main {
     }
 }
 ```
-The idea here is to delete 2 characters at the front of the sb when there are 2 consecutive '0's and to delete 1 character at the front when there aren't, 
-while counting how many times we delete the characters. We have to be careful around deleting characters in a sb as the indexes would move to account for
-the loss. This problem was also featured on [ABC283](https://atcoder.jp/contests/abc283/tasks/abc283_c) as problem C. So, if you were able to solve this, congrats! You just solved a C problem!
 </details>
 
 ### Extra
