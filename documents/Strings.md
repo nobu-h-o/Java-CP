@@ -1,5 +1,5 @@
 # Strings
-### Useful methods of the String Class
+## Useful methods of the String Class
 ```Java
 String s = "Hello World!"
 s.subString(0, 5); 
@@ -14,9 +14,9 @@ The indexOf method returns the first index of the character/string, and the last
 
 The contains method returns a boolean value of whether or not a String is included in the String.
 
-### Further String manipulation
+## Further String manipulation
 Strings in Java suck. To use them effectively we have to change them to StringBuilders or char Arrays.
-### The StringBuilder Class
+## The StringBuilder Class
 The String Builder Class is basically a mutable version of the String.
 ```Java
 String s = "Hello World!";
@@ -175,7 +175,7 @@ private static void solve() {
 ```
 </details>
 
-### Extra
+## Extra
 It's important to note that Strings in Java are reference data types because they are objects of the String class. 
 Strings are immutable, meaning that once a String object, such as "Hello World", is created, its value cannot be changed. 
 When you perform operations that modify a string - like concatenation or replacement - a new String instance with the updated 
