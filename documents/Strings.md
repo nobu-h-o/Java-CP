@@ -152,18 +152,18 @@ public class Main {
         while(sb.length()>0){
             if(sb.length()>1 && sb.charAt(0)=='0' && sb.charAt(1)=='0'){
                 sb.delete(0, 2);
-                count++;
             }else{
                 sb.deleteCharAt(0);
-                count++;
             }
+            count++;
         }
         
         System.out.println(count);
     }
 }
 ```
-The idea here is to delete 2 characters at the front of the sb when there are 2 consecutive '0's and to delete 1 character at the front when there aren't, while counting how many times we delete characters.
+The idea here is to delete 2 characters at the front of the sb when there are 2 consecutive '0's and to delete 1 character at the front when there aren't, while counting how many times we delete the 
+characters. This problem was also featured on [ABC283](https://atcoder.jp/contests/abc283/tasks/abc283_c) as problem C. So, if you were able to solve this, congrats! You just solved a C problem!
 </details>
 
 ### Extra
