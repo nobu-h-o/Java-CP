@@ -89,6 +89,31 @@ public class Main {
         String s = sc.next();
         sc.close();
 
+        StringBuilder sb = new StringBuilder(s);
+
+        while(s.contains(".")){
+            int index = sb.indexOf(".");
+            sb.deleteCharAt(index);
+            s = sb.toString();
+        }
+
+        System.out.println(s);
+    }
+}
+
+```
+We can write exactly what is being told by deleting every instance of '.' that s contains. Unfortunately, sb doesn't have the contains method, so we have
+to convert sb to s and check it every loop.
+
+```Java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.next();
+        sc.close();
+
         StringBuilder sb = new StringBuilder();
         for(int i=0; i<s.length(); i++){
             if(s.charAt(i)!='.') sb.append(s.charAt(i));
@@ -98,7 +123,7 @@ public class Main {
     }
 }
 ```
-We append each letter from s to sb that doesn't equal '.'.
+Another way is to append each letter from s to sb that doesn't equal '.'.
 </details>
 
 [ABC384-A](https://atcoder.jp/contests/abc384/tasks/abc384_a) 
