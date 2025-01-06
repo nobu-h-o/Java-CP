@@ -4,4 +4,4 @@ into completing the "easy" questions. The easy questions refer to questions A an
 
 ## Prerequisites
 You should be able to write a basic "Hello World" program in Java and also use data types such as ints, chars and also arrays. OOP basics would help a lot in the "Extra"
-sections, but I don't think it's necessary.
+sections, but isn't a must.
