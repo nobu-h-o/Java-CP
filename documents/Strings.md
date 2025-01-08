@@ -101,7 +101,7 @@ private static void solve() {
 }
 
 ```
-Of course, you can input the StringBuilder like this to be a little bit faster. Obviously this wouldn't be a good idea if storing the original String was a necessity.
+Of course, you can input the StringBuilder like this to be a little bit faster. Obviously this wouldn't be a good idea if storing the original String was a necessity like in this problem.
 ```Java
 StringBuilder sb = new StringBuilder(sc.next());
 ```
