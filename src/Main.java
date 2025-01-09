@@ -8,13 +8,15 @@ public class Main {
     private static void solve() {
 
     }
+
     public static void main(String[] args) {
         solve();
         pw.flush();
         pw.close();
     }
-    private static ContestScanner sc = new ContestScanner(System.in);
-    private static ContestPrinter pw = new ContestPrinter(System.out);
+    private static final ContestScanner sc = new ContestScanner(System.in);
+    private static final ContestPrinter pw = new ContestPrinter(System.out);
+    private static final int mod = 998244353;
 }
 
 
