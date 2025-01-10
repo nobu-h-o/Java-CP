@@ -2,12 +2,12 @@
 ## Useful methods of the String Class
 ```Java
 String s = "Hello World!"
-s.subString(0, 5); 
+s.subString(0, 4); 
 s.indexOf(".");
 s.lastIndexOf(".");
 s.contains("ello");
 ```
-The subString method returns the substring of String s that starts with the index x and takes y characters. For example, the code above returns "Hello". Note that this does not change the String s object itself and only
+The subString method returns the substring of String s from index 0 up to (but not including) index 4. For example, the code above returns "Hello". Note that this does not change the String s object itself and only
 returns the substring. You will need to store it in another variable if you want to use it somewhere else.   
 
 The indexOf method returns the first index of the character/string, and the lastIndexOf method returns the last index of the character/string.  
@@ -36,7 +36,7 @@ Therefore, after the append method above, the content of sb would be "Hello worl
 You can delete parts of the sb using the delete method. After the delete method above, sb would become "Hello". You can also delete a specific character with deleteCharAt. After the deleteCharAt method above, 
 sb is "Hell".  
 
-StringBuiders can also use most of the methods that the Strings can use.
+StringBuilders can also use most of the methods that the Strings can use.
 Therefore, it can still use sb.length() or sb.charAt(i). You can also convert
 StringBuilders back to Strings.
 ```Java
