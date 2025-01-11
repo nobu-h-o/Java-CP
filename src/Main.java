@@ -8,7 +8,6 @@ public class Main {
     private static void solve() {
 
     }
-
     public static void main(String[] args) {
         solve();
         pw.flush();
@@ -17,14 +16,17 @@ public class Main {
     private static final ContestScanner sc = new ContestScanner(System.in);
     private static final ContestPrinter pw = new ContestPrinter(System.out);
     private static final int mod = 998244353;
+    private static final int MOD = 1000000007;
 }
-
 
 
 
 /**
  * reference : https://github.com/NASU41/AtCoderLibraryForJava
  */
+
+
+
 class ContestScanner {
     private final java.io.InputStream in;
     private final byte[] buffer = new byte[1024];
